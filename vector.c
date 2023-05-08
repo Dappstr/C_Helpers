@@ -37,21 +37,33 @@ int vector_pop(Vector* vec, void* out_value) {
         return -1;
     }
 
+    void* backup_buffer = malloc(vec->m_cap);
+    memcpy(&backup_buffer, &vec->m_buffer, vec->m_cap * vec->m_elem_size);
+    
     void* last_element_addr = vector_last_element(vec);
     memcpy(out_value, last_element_addr, vec->m_elem_size);
+    
+    if(memcmp(vector_last_element(vec), last_element_addr, vec->m_elem_size) != 0)  {
+        fprintf(stderr, "Error! Popping value failed!\n");
+        memcpy(vec->m_buffer, backup_buffer, vec->m_cap * vec->m_elem_size);
+    }
 
     vec->m_size--;
-
+    free(backup_buffer);
     return 0;
 }
 
 void vector_push(Vector* vec, const void* value) {
     assert(vec->m_size >= vec->m_cap);
+    
     // Check if the vector is full
     if (vec->m_size == vec->m_cap) {
-        int new_cap = vec->m_cap * sizeof(value);
+        
+        int new_cap = vec->m_cap == 0 ? 4 : vec->m_cap * 2;
         void* new_buffer = realloc(vec->m_buffer, new_cap * vec->m_elem_size);
+        
         if(new_buffer == NULL) {
+            free(new_buffer);
             fprintf(stderr, "Failed to reallocate after pushing!\n");
             return;
         }
@@ -59,25 +71,37 @@ void vector_push(Vector* vec, const void* value) {
         vec->m_buffer = new_buffer;
         vec->m_cap = new_cap;
     }
+
+    memcpy(vector_end(vec), value, vec->m_elem_size);
+    vec->m_size++;
+
 }
 
 void vector_push_back(Vector* vec, const void* value) {
     if(vec->m_size >= vec->m_cap) {
+        
         int new_cap = vec->m_cap == 0 ? 4 : vec->m_cap * 2;
         void* new_buffer = realloc(vec->m_buffer, new_cap * vec->m_elem_size);
+        
         if(!new_buffer) {
+            free(new_buffer);
             fprintf(stderr, "Error! Buffer corrupted!\n");
             return;
         }
+        
         vec->m_buffer = new_buffer;
         vec->m_cap = new_cap;            
     }
 
-    void* dest = vector_last_element(vec);
-    memcpy(dest, value, vec->m_elem_size);
+    memcpy(vector_end(vec), value, vec->m_elem_size); 
+    vec->m_size++;
 }
 
 int vector_size(Vector* vec) {
     return vec->m_size;
 }
 
+void vector_destroy(Vector* vec) {
+    free(vec->m_buffer);
+    vec->m_buffer = NULL; // Make null to not have a dangling pointer
+}
