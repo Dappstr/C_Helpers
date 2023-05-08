@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/Users/lane/Compilers/C/peach_compiler/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/lane/Compilers/C/peach_compiler -I/Users/lane/Compilers/C/peach_compiler/helpers -std=gnu17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/peach.dir/src/compiler.c.o -c /Users/lane/Compilers/C/peach_compiler/src/compiler.c",
+  "file": "/Users/lane/Compilers/C/peach_compiler/src/compiler.c",
+  "output": "CMakeFiles/peach.dir/src/compiler.c.o"
+},
+{
+  "directory": "/Users/lane/Compilers/C/peach_compiler/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/lane/Compilers/C/peach_compiler -I/Users/lane/Compilers/C/peach_compiler/helpers -std=gnu17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/peach.dir/src/cprocess.c.o -c /Users/lane/Compilers/C/peach_compiler/src/cprocess.c",
+  "file": "/Users/lane/Compilers/C/peach_compiler/src/cprocess.c",
+  "output": "CMakeFiles/peach.dir/src/cprocess.c.o"
+},
+{
+  "directory": "/Users/lane/Compilers/C/peach_compiler/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/lane/Compilers/C/peach_compiler -I/Users/lane/Compilers/C/peach_compiler/helpers -std=gnu17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/peach.dir/helpers/buffer.c.o -c /Users/lane/Compilers/C/peach_compiler/helpers/buffer.c",
+  "file": "/Users/lane/Compilers/C/peach_compiler/helpers/buffer.c",
+  "output": "CMakeFiles/peach.dir/helpers/buffer.c.o"
+},
+{
+  "directory": "/Users/lane/Compilers/C/peach_compiler/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/lane/Compilers/C/peach_compiler -I/Users/lane/Compilers/C/peach_compiler/helpers -std=gnu17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/peach.dir/helpers/vector.c.o -c /Users/lane/Compilers/C/peach_compiler/helpers/vector.c",
+  "file": "/Users/lane/Compilers/C/peach_compiler/helpers/vector.c",
+  "output": "CMakeFiles/peach.dir/helpers/vector.c.o"
+},
+{
+  "directory": "/Users/lane/Compilers/C/peach_compiler/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc  -I/Users/lane/Compilers/C/peach_compiler -I/Users/lane/Compilers/C/peach_compiler/helpers -std=gnu17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk -o CMakeFiles/peach.dir/src/main.c.o -c /Users/lane/Compilers/C/peach_compiler/src/main.c",
+  "file": "/Users/lane/Compilers/C/peach_compiler/src/main.c",
+  "output": "CMakeFiles/peach.dir/src/main.c.o"
+}
+]
