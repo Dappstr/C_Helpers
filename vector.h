@@ -62,7 +62,6 @@ int vector_insert(Vector* vec, int index, const void* value);
 // Removes an element at a specified position in the vector, shifting existing elements to fill the gap.
 int vector_erase(Vector* vec, int index);
 
-//TBI
 // Returns a pointer to the element at a specified position in the vector.
 void* vector_at(Vector* vec, int index);
 
