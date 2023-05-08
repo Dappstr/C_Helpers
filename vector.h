@@ -25,7 +25,7 @@ void* vector_end(Vector* vec);
 void* vector_last_element(Vector* vec);
 
 // Default initializes a vector.
-void vector_init(Vector* vec, int elem_size);
+Vector* vector_init(Vector* vec, int elem_size);
 
 // Will remove the last element from the given buffer, and will store it in out_value which will be returned.
 int vector_pop(Vector* vec, void* out_value);
