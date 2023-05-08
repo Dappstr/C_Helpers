@@ -8,7 +8,6 @@ void* vector_begin(Vector* vec) {
 }
 
 void* vector_end(Vector* vec) {
-    assert(vec->m_size >= 1);
     return (char*)vec->m_buffer + vec->m_size * vec->m_elem_size; // Get the last area of memory
                                                              // We first cast to a char pointer to allow for pointer arithmetic
                                                              // Since C cannot do pointer arithmetic on type of void*
@@ -23,11 +22,13 @@ void* vector_last_element(Vector* vec) {
 }
 
 // elem_size can be something like sizeof(int)
-void vector_init(Vector* vec, int elem_size) {
+Vector* vector_init(Vector* vec, int elem_size) {
     vec->m_buffer = NULL;
     vec->m_size = 0;
     vec->m_cap = 0;
     vec->m_elem_size = elem_size;
+    
+    return vec;
 }
 
 int vector_pop(Vector* vec, void* out_value) {
@@ -104,4 +105,12 @@ int vector_size(Vector* vec) {
 void vector_destroy(Vector* vec) {
     free(vec->m_buffer);
     vec->m_buffer = NULL; // Make null to not have a dangling pointer
+}
+void* vector_at(Vector* vec, int index) {
+    assert(index <= vec->m_size-1);
+    if(index > vec->m_size || index > vec->m_cap) {
+        fprintf(stderr, "Invalid location for `at`\n");
+        return NULL;
+    }
+    return (char*) vec->m_buffer + (index * vec->m_elem_size);
 }
