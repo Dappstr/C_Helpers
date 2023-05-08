@@ -1,5 +1,9 @@
-#include "stdlib.h"
-#include "stdio.h"
+#define _POSIX_C_SOURCE 200809L
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
 
 typedef struct
 {
@@ -11,7 +15,9 @@ typedef struct
 
 void* vector_begin(Vector* vec);
 void* vector_end(Vector* vec);
-void vector_pop(Vector* vec);
-void vector_push(Vector* vec);
+void* vector_last_element(Vector* vec);
+void vector_init(Vector* vec, int elem_size);
+int vector_pop(Vector* vec, void* out_value);
+int vector_push(Vector* vec, const void* value);
 void vector_push_back(int val);
-void vector_init(Vector* vec);
+int vector_size(Vector* vec);

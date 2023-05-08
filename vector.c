@@ -1,11 +1,4 @@
-#ifndef VECTOR_H
-#define VECTOR_H
-
-#endif
 #include "vector.h"
-#include "stdlib.h"
-#include "stdio.h"
-#include "assert.h"
 
 //...TODO
 
@@ -25,10 +18,55 @@ void* vector_end(Vector* vec) {
                                                              // to get the memory location that is 1 byte past.
 }
 
+void* vector_last_element(Vector* vec) {
+    return (char*)vec->m_buffer + (vec->m_size - 1) * vec->m_elem_size;
+}
+
 // elem_size can be something like sizeof(int)
-void init_vector(Vector* vec, int elem_size) {
+void vector_init(Vector* vec, int elem_size) {
     vec->m_buffer = NULL;
     vec->m_size = 0;
     vec->m_cap = 0;
     vec->m_elem_size = elem_size;
+}
+
+int vector_pop(Vector* vec, void* out_value) {
+    assert(vec->m_size > 0);
+    if(vec->m_size == 0) {
+        fprintf(stderr, "Error! Not enough elements in vector to pop!\n");
+        return -1;
+    }
+
+    void* last_element_addr = vector_last_element(vec);
+    memcpy(out_value, last_element_addr, vec->m_elem_size);
+
+    vec->m_size--;
+
+    return 0;
+}
+
+int vector_push(Vector* vec, const void* value) {
+    assert(vec->m_size >= vec->m_cap);
+    // Check if the vector is full
+    if (vec->m_size == vec->m_cap) {
+        int new_cap = vec->m_cap * sizeof(value);
+        void* new_buffer = realloc(vec->m_buffer, new_cap * vec->m_elem_size);
+        if(new_buffer == NULL) {
+            fprintf(stderr, "Failed to reallocate after pushing!\n");
+            return -1;
+        }
+        
+        vec->m_buffer = new_buffer;
+        vec->m_cap = new_cap;
+    }
+    return 0;
+}
+
+int vector_size(Vector* vec) {
+    return vec->m_size;
+}
+
+int main()
+{
+
 }
