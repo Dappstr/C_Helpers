@@ -45,7 +45,7 @@ int vector_pop(Vector* vec, void* out_value) {
     return 0;
 }
 
-int vector_push(Vector* vec, const void* value) {
+void vector_push(Vector* vec, const void* value) {
     assert(vec->m_size >= vec->m_cap);
     // Check if the vector is full
     if (vec->m_size == vec->m_cap) {
@@ -53,20 +53,31 @@ int vector_push(Vector* vec, const void* value) {
         void* new_buffer = realloc(vec->m_buffer, new_cap * vec->m_elem_size);
         if(new_buffer == NULL) {
             fprintf(stderr, "Failed to reallocate after pushing!\n");
-            return -1;
+            return;
         }
         
         vec->m_buffer = new_buffer;
         vec->m_cap = new_cap;
     }
-    return 0;
+}
+
+void vector_push_back(Vector* vec, const void* value) {
+    if(vec->m_size >= vec->m_cap) {
+        int new_cap = vec->m_cap == 0 ? 4 : vec->m_cap * 2;
+        void* new_buffer = realloc(vec->m_buffer, new_cap * vec->m_elem_size);
+        if(!new_buffer) {
+            fprintf(stderr, "Error! Buffer corrupted!\n");
+            return;
+        }
+        vec->m_buffer = new_buffer;
+        vec->m_cap = new_cap;            
+    }
+
+    void* dest = vector_last_element(vec);
+    memcpy(dest, value, vec->m_elem_size);
 }
 
 int vector_size(Vector* vec) {
     return vec->m_size;
 }
 
-int main()
-{
-
-}

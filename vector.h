@@ -18,6 +18,6 @@ void* vector_end(Vector* vec);
 void* vector_last_element(Vector* vec);
 void vector_init(Vector* vec, int elem_size);
 int vector_pop(Vector* vec, void* out_value);
-int vector_push(Vector* vec, const void* value);
-void vector_push_back(int val);
+void vector_push(Vector* vec, const void* value);
+void vector_push_back(Vector* vec, const void* value);
 int vector_size(Vector* vec);
